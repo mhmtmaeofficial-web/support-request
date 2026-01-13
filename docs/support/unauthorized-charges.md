@@ -10,15 +10,20 @@ Thank you for reporting this — I’m sorry for the stress this has caused.
 
 I’ve escalated your case for an urgent billing review. We will:
 
-- Issue a **full refund** for the unauthorized charges once the review confirms
+- Issue a **full refund** for the unauthorized charges once our review confirms
   they were not authorized.
 - **Manually remove all saved payment methods** from your account (since you’re
   unable to remove the debit card via self-serve).
 - Confirm in writing that **no further charges** will occur.
 
-To help us locate the exact transactions quickly, please reply with:
+If you’ve already canceled subscriptions, we’ll still double-check on our side
+that there are **no active subscriptions** or **pending invoices** that could
+trigger additional charges.
+
+To help us locate the exact transactions quickly, please reply with (if you can):
 
 - The **date/time** you see for each charge and the **amounts**
+- The **total amount** charged (if multiple charges): `<total_amount>`
 - The **last 4 digits** of the card charged
 - The **country** and **currency** shown on your statement (if available)
 - The account email to investigate: `<customer_email>`
@@ -35,7 +40,45 @@ removed.
 Sincerely,
 Support Team
 
+## Customer-facing confirmation template (send after actions are completed)
+
+Subject: Confirmed: Refund issued + payment methods removed
+
+Hello,
+
+An update on your report of unauthorized charges on `<charge_date>`:
+
+- Refund(s) issued: `<refund_amounts_and_dates>`
+- All saved payment methods removed: **Yes**
+- Subscriptions canceled / auto-collection disabled: **Yes**
+- Further charges: **We do not expect any further charges from our side**
+
+Refund timing note:
+
+- Most banks post refunds within `<refund_timeline>` (timing varies by bank).
+
+If you see any additional charges after this message, reply immediately and we’ll
+re-open the billing review.
+
+Sincerely,
+Support Team
+
 ## Internal checklist (do not send to customer)
+
+### Severity and SLA
+
+Treat unauthorized-charge reports as **P0 (urgent)** when any of the following
+apply:
+
+- The customer reports **multiple charges** in a short timeframe
+- The customer reports they **cannot remove** a payment method
+- The customer requests an urgent stop to further charges
+
+Targets:
+
+- **Acknowledge** within **1 business hour**
+- **Mitigate** (cancel subscriptions, disable auto-collection, remove payment
+  methods) within **4 business hours**
 
 ### 1) Triage and verification
 
@@ -64,6 +107,10 @@ Self-serve removal may be blocked by:
 - A pending invoice
 - A payment method set as default for an open invoice
 - A dispute/chargeback workflow holding the payment method
+
+If the customer reports they “canceled everything” but the card still can’t be
+removed, assume there is still at least one of the above conditions until proven
+otherwise.
 
 Actions:
 
